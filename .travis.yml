@@ -9,7 +9,7 @@ script:
   - docker image minsak/node
 
 before_deploy:
-  - docker login - minsak -p Biitum12
+  - docker login - minsak -p Biitum12!!
 
 deploy:
   provider: script
