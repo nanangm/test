@@ -1,0 +1,18 @@
+sudo: required
+language: ruby
+
+services:
+  - docker
+
+script:
+  - docker build -t minsak/node .
+  - docker image minsak/node
+
+before_deploy:
+  - docker login - minsak -p Biitum12
+
+deploy:
+  provider: script
+  script: docker push minsak/node
+  on:
+    branch: master
