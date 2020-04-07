@@ -1,18 +1,19 @@
+language: node_js
+node_js:
+  - "12"
 sudo: required
-language: ruby
-
 services:
   - docker
-
+before_script:
+  - npm install
 script:
+  - npm test
   - docker build -t minsak/node .
   - docker image minsak/node
 
-before_deploy:
-  - docker login - minsak -p Biitum12!!
-
-deploy:
-  provider: script
-  script: docker push minsak/node
-  on:
-    branch: master
+after_success: docker login - minsak -p Biitum12!!
+  - docker login -u minsak -p Biitum12!!
+  - docker tag node minsak/node:$TRAVIS_BUILD_NUMBER
+  - docker push minsak/node:$TRAVIS_BUILD_NUMBER
+  - docker tag node $DOCKER_USER/node:latest
+  - docker push minsak/node:latest
