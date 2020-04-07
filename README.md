@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-# test
-test
-=======
-Simple node and express docker
->>>>>>> first
+# node-docker
+Simple node and express docker 
