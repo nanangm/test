@@ -11,9 +11,8 @@ script:
   - docker build -t minsak/node .
   - docker image minsak/node
 
-after_success: docker login - minsak -p Biitum12!!
-  - docker login -u minsak -p Biitum12!!
-  - docker tag node minsak/node:$TRAVIS_BUILD_NUMBER
-  - docker push minsak/node:$TRAVIS_BUILD_NUMBER
-  - docker tag node $DOCKER_USER/node:latest
-  - docker push minsak/node:latest
+deploy:
+  provider: script
+  script: docker push minsak/node
+  on:
+    branch: master
